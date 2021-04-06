@@ -1,7 +1,7 @@
 {
     "name": "saf",
     "version": "1.0.0",
-    "description": "Slack Salesforce Action Framework",
+    "description": "Slack<->Salesforce Action Framework",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"

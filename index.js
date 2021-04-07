@@ -98,6 +98,7 @@ app.command("/whoami", async ({ command, ack, say }) => {
 });
 
 app.command("/saf", async ({ command, ack, say }) => {
+    console.log(command);
     await ack();
     if (connection.userInfo) {
         const userId = connection.userInfo.id;

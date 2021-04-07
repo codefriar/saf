@@ -39,6 +39,8 @@ const receiver = new ExpressReceiver({
         callbackOptions: {
             success: async (installation, installOptions, req, res) => {
                 try {
+                    console.log("Entering try/catch block");
+                    console.log(installation, installOptions, req, res);
                     oAuthResponseFromSlackInstall = installation;
                     res.redirect("/slack/appinstall/success");
                 } catch (error) {

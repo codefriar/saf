@@ -97,6 +97,25 @@ app.command("/whoami", async ({ command, ack, say }) => {
     }
 });
 
+app.command("/saf", async ({ command, ack, say }) => {
+    await ack();
+    if (connection.userInfo) {
+        const userId = connection.userInfo.id;
+        const result = await connection.query(
+            `Select Id, Name, Phone, Email, Profile.Name FROM User WHERE ID='${userId}'`
+        );
+        console.log(result);
+        try {
+            await say(renderWhoamiBlock(result));
+        } catch (e) {
+            console.log(e);
+        }
+    } else {
+        const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
+        await say(renderAuthorizeButton(salesforce_url));
+    }
+});
+
 // renders Whoami Block
 function renderWhoamiBlock(result) {
     return {

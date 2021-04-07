@@ -49,6 +49,7 @@ const receiver = new ExpressReceiver({
             },
             failure: (error, installOptions, req, res) => {
                 // Do custom failure logic here
+                console.log("Error occured " + error);
                 res.send("failure");
             },
         },

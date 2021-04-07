@@ -57,7 +57,7 @@ const app = new App({
     receiver,
 });
 
-app.command("/whoami", async ({ command, ack, say }) => {
+app.command("/whoamikp", async ({ command, ack, say }) => {
     // Acknowledge command request
     await ack();
     const userId = connection.userInfo.id;

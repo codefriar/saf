@@ -13,6 +13,7 @@
         "jsforce": "^1.10.1"
     },
     "devDependencies": {
+        "heroku": "^7.51.0",
         "prettier": "^2.2.1"
     },
     "license": "ISC"

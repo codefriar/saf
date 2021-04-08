@@ -78,7 +78,7 @@ app.action("authorize_sf", async ({ command, ack, say }) => {
 
 app.command("/saf", async ({ command, ack, say }) => {
     await ack();
-    console.log("Command data is: ", command);
+    console.log("Command data is: ", JSON.stringify(command));
     if (connection.userInfo) {
         const userId = connection.userInfo.id;
         const result = await connection.query(

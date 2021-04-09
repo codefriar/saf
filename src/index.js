@@ -88,7 +88,8 @@ app.command("/saf", async ({ command, ack, say }) => {
             function (err) {
                 console.log("error");
                 console.dir(err);
-                say(err);
+                console.log(JSON.stringify(err));
+                say("An error occured. The error message is" + err);
             }
         );
     } else {

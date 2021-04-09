@@ -90,7 +90,7 @@ app.command("/saf", async ({ command, ack, say }) => {
         const url =
             process.env.SALESFORCE_INSTANCE_URL + "/services/apexrest/SAF/";
 
-        connection.apex.post("/SAF/").then(
+        connection.apex.post("/SAF/", command).then(
             function (result) {
                 console.log("success");
                 console.log(result);

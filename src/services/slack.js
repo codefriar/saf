@@ -20,7 +20,7 @@ class SlackService {
 
     /**
      * Handles the /addGroupMappingCommand slash command
-     */
+    
     async addGroupMappingCommand(command, ack, say) {
         await ack();
         try {
@@ -37,6 +37,7 @@ class SlackService {
             await say("Error adding mapping.");
         }
     }
+    */
 }
 
 module.exports = SlackService;

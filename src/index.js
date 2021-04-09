@@ -83,7 +83,7 @@ app.command("/saf", async ({ command, ack, say }) => {
             function (result) {
                 console.log("success");
                 console.log(result);
-                say(result);
+                say("" + result);
             },
             function (err) {
                 console.log("error");

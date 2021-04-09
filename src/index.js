@@ -81,37 +81,18 @@ app.command("/saf", async ({ command, ack, say }) => {
     console.log("Command data is: ", JSON.stringify(command));
     console.log(connection.userInfo);
     if (connection.userInfo) {
-        const options = {
-            headers: {
-                Authorization: "Bearer " + connection.accessToken,
-            },
-        };
-        console.log("Options ", options);
-        const url =
-            process.env.SALESFORCE_INSTANCE_URL + "/services/apexrest/SAF/";
-
         connection.apex.post("/SAF/", command).then(
             function (result) {
                 console.log("success");
                 console.log(result);
+                say(result);
             },
             function (err) {
                 console.log("error");
                 console.log(err);
+                say(err);
             }
         );
-        // connection.requestPost(url, command, options).then(
-        //     function (result) {
-        //         console.log("success");
-        //         console.log(result);
-        //     },
-        //     function (err) {
-        //         console.log("error");
-        //         console.log(err);
-        //     }
-        // );
-
-        say("YES!");
     } else {
         const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
         await say(renderAuthorizeButton(salesforce_url));

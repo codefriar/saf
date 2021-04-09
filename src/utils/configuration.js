@@ -67,6 +67,7 @@ module.exports = class Configuration {
     }
 
     static getSalesforceConfig() {
+        console.log(process.env.SALESFORCE_PRIVATE_KEY);
         return {
             iss: process.env.SALESFORCE_CLIENT_ID,
             sub: process.env.SALESFORCE_USERNAME,

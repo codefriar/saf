@@ -86,32 +86,20 @@ app.command("/saf", async ({ command, ack, say }) => {
             },
         };
 
-        console.log("Options: ", options);
-        console.log("connection ", connection);
         const url =
-            process.env.SALESFORCE_INSTANCE_URL +
-            "/services/apexrest/v50.0/SAF/";
+            process.env.SALESFORCE_INSTANCE_URL + "/services/apexrest/SAF/";
         connection.requestPost(url, command, options).then(
             function (result) {
+                console.log("success");
                 console.log(result);
             },
             function (err) {
+                console.log("error");
                 console.log(err);
             }
         );
 
         say("YES!");
-
-        // const userId = connection.userInfo.id;
-        // const result = await connection.query(
-        //     `Select Id, Name, Phone, Email, Profile.Name FROM User WHERE ID='${userId}'`
-        // );
-        // console.log(result);
-        // try {
-        //     await say(renderWhoamiBlock(result));
-        // } catch (e) {
-        //     console.log(e);
-        // }
     } else {
         const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
         await say(renderAuthorizeButton(salesforce_url));

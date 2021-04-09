@@ -1,0 +1,15 @@
+{
+    "token": "PzkHZMiOv7QcwaNlh9P32LzR",
+    "team_id": "T01Q9THCYER",
+    "team_domain": "trailblazerfun",
+    "channel_id": "C01T4QZ2G4F",
+    "channel_name": "saf",
+    "user_id": "U01RERS422F",
+    "user_name": "kpoorman",
+    "command": "/saf",
+    "text": "this is a test",
+    "api_app_id": "A01TGBVT77X",
+    "is_enterprise_install": "false",
+    "response_url": "https://hooks.slack.com/commands/T01Q9THCYER/1924655901751/UNy4Cw8fy7KZjAa73WfPPrvB",
+    "trigger_id": "1932651635222.1825935440501.74de40005e9eff13ca697fcf2b879df4"
+}

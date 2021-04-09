@@ -67,12 +67,13 @@ module.exports = class Configuration {
     }
 
     static getSalesforceConfig() {
-        console.log(process.env.SALESFORCE_PRIVATE_KEY);
-        return {
+        const config = {
             iss: process.env.SALESFORCE_CLIENT_ID,
             sub: process.env.SALESFORCE_USERNAME,
             aud: process.env.SALESFORCE_INSTANCE_URL,
             privateKey: process.env.SALESFORCE_PRIVATE_KEY,
         };
+        console.log(config);
+        return config;
     }
 };

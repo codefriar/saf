@@ -86,7 +86,7 @@ app.command("/saf", async ({ command, ack, say }) => {
                 Authorization: "Bearer " + connection.accessToken,
             },
         };
-
+        console.log("Options ", options);
         const url =
             process.env.SALESFORCE_INSTANCE_URL + "/services/apexrest/SAF/";
         connection.requestPost(url, command, options).then(

@@ -82,14 +82,15 @@ app.command("/saf", async ({ command, ack, say }) => {
     if (connection.userInfo) {
         const options = {
             headers: {
-                Authorization: "Bearer " + this.connection.accessToken,
+                Authorization: "Bearer " + connection.accessToken,
             },
         };
 
         console.log("Options: ", options);
         console.log("connection ", this.connection);
         const url =
-            process.env.SALESFORCE_INSTANCE_URL + "/services/apexrest/v1/SAF/";
+            process.env.SALESFORCE_INSTANCE_URL +
+            "/services/apexrest/v50.0/SAF/";
         this.connection.requestPost(url, command, options).then(
             function (result) {
                 console.log(result);

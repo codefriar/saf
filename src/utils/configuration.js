@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 const REQUIRED_ENV_VARIABLES = [
     "DATABASE_URL",
     "SALESFORCE_INSTANCE_URL",
@@ -73,7 +75,7 @@ module.exports = class Configuration {
             aud: process.env.SALESFORCE_INSTANCE_URL,
             privateKey: process.env.SALESFORCE_PRIVATE_KEY,
         };
-        console.log(config);
+        console.log(JSON.parse(config));
         return config;
     }
 };

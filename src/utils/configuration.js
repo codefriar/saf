@@ -2,7 +2,7 @@ const REQUIRED_ENV_VARIABLES = [
     "DATABASE_URL",
     "SALESFORCE_INSTANCE_URL",
     "SALESFORCE_CLIENT_ID",
-    "SALESFORCE_CLIENT_SECRET",
+    "SALESFORCE_PRIVATE_KEY",
     "SLACK_SIGNING_SECRET",
     "SLACK_CLIENT_ID",
     "SLACK_CLIENT_SECRET",
@@ -67,6 +67,7 @@ module.exports = class Configuration {
     static getSalesforceConfig() {
         return {
             iss: process.env.SALESFORCE_CLIENT_ID,
+            sub: process.env.SALESFORCE_USERNAME,
             aud: process.env.SALESFORCE_INSTANCE_URL,
             privateKey: process.env.SALESFORCE_CLIENT_SECRET,
         };

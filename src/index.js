@@ -78,8 +78,6 @@ app.action("authorize_sf", async ({ command, ack, say }) => {
 
 app.command("/saf", async ({ command, ack, say }) => {
     await ack();
-    console.log("Command data is: ", JSON.stringify(command));
-    console.log(connection.userInfo);
     if (connection.userInfo) {
         connection.apex.post("/SAF/", command).then(
             function (result) {
@@ -89,7 +87,7 @@ app.command("/saf", async ({ command, ack, say }) => {
             },
             function (err) {
                 console.log("error");
-                console.log(err);
+                console.dir(err);
                 say(err);
             }
         );
@@ -98,51 +96,6 @@ app.command("/saf", async ({ command, ack, say }) => {
         await say(renderAuthorizeButton(salesforce_url));
     }
 });
-
-// renders Whoami Block
-function renderWhoamiBlock(result) {
-    return {
-        blocks: [
-            {
-                type: "section",
-                fields: [
-                    {
-                        type: "mrkdwn",
-                        text: "*Name*",
-                    },
-                    {
-                        type: "mrkdwn",
-                        text: "*Email*",
-                    },
-                    {
-                        type: "plain_text",
-                        text: `${result.records[0].Name}`,
-                    },
-                    {
-                        type: "plain_text",
-                        text: `${result.records[0].Email}`,
-                    },
-                    {
-                        type: "mrkdwn",
-                        text: "*Phone*",
-                    },
-                    {
-                        type: "mrkdwn",
-                        text: "*Profile Name*",
-                    },
-                    {
-                        type: "plain_text",
-                        text: `${result.records[0].Phone}`,
-                    },
-                    {
-                        type: "plain_text",
-                        text: `${result.records[0].Profile.Name}`,
-                    },
-                ],
-            },
-        ],
-    };
-}
 
 // Block SDK for returning the Authorize Button
 function renderAuthorizeButton(salesforce_url) {

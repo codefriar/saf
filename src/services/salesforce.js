@@ -30,25 +30,25 @@ class SalesforceService {
     async executeAction(command, ack, say) {
         await ack();
         return new Promise((resolve, reject) => {
-            const salesforceConfig = Configuration.getSalesforceConfig();
             const options = {
                 headers: {
                     Authorization: "Bearer " + this.connection.accessToken,
                 },
             };
 
-            console.log("Options: " + options);
-            console.log("connection " + this.connection);
-            this.connection
-                .requestPost(salesforceConfig.aud, command, options)
-                .then(
-                    function (result) {
-                        console.log(result);
-                    },
-                    function (err) {
-                        console.log(err);
-                    }
-                );
+            console.log("Options: ", options);
+            console.log("connection ", this.connection);
+            const url =
+                process.env.SALESFORCE_INSTANCE_URL +
+                "/services/apexrest/v1/SAF/";
+            this.connection.requestPost(url, command, options).then(
+                function (result) {
+                    console.log(result);
+                },
+                function (err) {
+                    console.log(err);
+                }
+            );
         });
     }
 

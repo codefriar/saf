@@ -28,6 +28,7 @@ class SalesforceService {
         const salesforceConfig = Configuration.getSalesforceConfig();
         jwt.getToken(salesforceConfig, (jwtError, response) => {
             if (jwtError) {
+                console.log("rejected!", jwtError);
                 reject(jwtError);
             } else {
                 try {

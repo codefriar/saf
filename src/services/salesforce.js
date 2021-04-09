@@ -15,15 +15,24 @@ class SalesforceService {
     async connect() {
         return new Promise((resolve, reject) => {
             const salesforceConfig = Configuration.getSalesforceConfig();
-            const oauth2 = new jsforce.OAuth2({
-                // you can change loginUrl to connect to sandbox or scratchorg env.
-                // loginUrl : 'https://test.salesforce.com',
-                clientId: process.env.SALESFORCE_CLIENT_ID,
-                clientSecret: process.env.SALESFORCE_CLIENT_SECRET,
-                redirectUri: process.env.SALESFORCE_REDIRECT_URL,
+            jwt.getToken(salesforceConfig, (jwtError, response) => {
+                if (jwtError) {
+                    reject(jwtError);
+                } else {
+                    try {
+                        const connection = new jsforce.Connection();
+                        connection.initialize({
+                            instanceUrl: response.instance_url,
+                            accessToken: response.access_token,
+                        });
+                        this.connection = connection;
+                        console.log("Successfully connected to Salesforce org");
+                        resolve();
+                    } catch (jsForceError) {
+                        reject(jwtError);
+                    }
+                }
             });
-            this.connection = new jsforce.Connection({ oauth2: oauth2 });
-            resolve();
         });
     }
 

@@ -7,6 +7,7 @@ const REQUIRED_ENV_VARIABLES = [
     "SLACK_CLIENT_ID",
     "SLACK_CLIENT_SECRET",
     "STATE_SECRET",
+    "SALESFORCE_PRIVATE_KEY",
 ];
 
 module.exports = class Configuration {
@@ -70,7 +71,7 @@ module.exports = class Configuration {
             iss: process.env.SALESFORCE_CLIENT_ID,
             sub: process.env.SALESFORCE_USERNAME,
             aud: process.env.SALESFORCE_INSTANCE_URL,
-            privateKey: process.env.SALESFORCE_CLIENT_SECRET,
+            privateKey: process.env.SALESFORCE_PRIVATE_KEY,
         };
     }
 };

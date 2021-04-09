@@ -79,6 +79,7 @@ app.action("authorize_sf", async ({ command, ack, say }) => {
 app.command("/saf", async ({ command, ack, say }) => {
     await ack();
     console.log("Command data is: ", JSON.stringify(command));
+    console.log(connection.userInfo);
     if (connection.userInfo) {
         const options = {
             headers: {

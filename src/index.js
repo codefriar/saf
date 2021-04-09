@@ -88,6 +88,7 @@ receiver.router.use(express.json());
         await app.start(PORT);
         console.log(`⚡️ Bolt app is running on port ${PORT}!`);
     } catch (error) {
+        console.log("Try/Catch failed.");
         console.error(error);
     }
 })();

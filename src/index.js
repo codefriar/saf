@@ -87,11 +87,11 @@ app.command("/saf", async ({ command, ack, say }) => {
         };
 
         console.log("Options: ", options);
-        console.log("connection ", this.connection);
+        console.log("connection ", connection);
         const url =
             process.env.SALESFORCE_INSTANCE_URL +
             "/services/apexrest/v50.0/SAF/";
-        this.connection.requestPost(url, command, options).then(
+        connection.requestPost(url, command, options).then(
             function (result) {
                 console.log(result);
             },

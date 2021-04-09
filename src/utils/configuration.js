@@ -42,10 +42,11 @@ module.exports = class Configuration {
             clientSecret: process.env.SLACK_CLIENT_SECRET,
             stateSecret: process.env.STATE_SECRET,
             scopes: [
-                "channels:history",
                 "channels:read",
+                "groups:read",
+                "channels:manage",
                 "chat:write",
-                "chat:write.public",
+                "incoming-webhook",
                 "commands",
             ],
             endpoints: {

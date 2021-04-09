@@ -1,5 +1,5 @@
-const Configuration = require('../utils/configuration.js');
-const { Pool } = require('pg');
+const Configuration = require("../utils/configuration.js");
+const { Pool } = require("pg");
 
 class DatabaseService {
     constructor() {
@@ -11,7 +11,7 @@ class DatabaseService {
         try {
             return await client.query(query, parameters);
         } catch (error) {
-            console.error('Failing SQL query:', query, parameters);
+            console.error("Failing SQL query:", query, parameters);
             throw error;
         } finally {
             client.release();
@@ -38,6 +38,7 @@ class DatabaseService {
     }
 
     async saveToken(tokenInfo) {
+        const scopes = JSON.stringify(tokenInfo.scopes);
         await this.query(
             `INSERT INTO tokens (scope, token, userId, botId) VALUES ($1, $2, $3, $4)`,
             [scopes, tokenInfo.token, tokenInfo.userId, tokenInfo.id]
@@ -90,7 +91,7 @@ class DatabaseService {
                 sfParentId,
                 slackChannelId,
                 slackMessageId,
-                slackParentId
+                slackParentId,
             ]
         );
     }

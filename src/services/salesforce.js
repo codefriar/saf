@@ -52,7 +52,7 @@ class SalesforceService {
             //resolve();
         } else {
             const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
-            await say(renderAuthorizeButton(salesforce_url));
+            await say(this.renderAuthorizeButton(salesforce_url));
         }
         //});
     }

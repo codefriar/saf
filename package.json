@@ -4,7 +4,7 @@
     "description": "Slack<->Salesforce Action Framework",
     "main": "node src/index.js",
     "scripts": {
-        "start": "node index.js",
+        "start": "node src/index.js",
         "lint": "eslint ./src/**/*.js",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",

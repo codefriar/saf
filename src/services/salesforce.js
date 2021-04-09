@@ -29,31 +29,32 @@ class SalesforceService {
 
     async executeAction(command, ack, say) {
         await ack();
-        return new Promise((resolve, reject) => {
-            if (this.connection.userInfo) {
-                const options = {
-                    headers: {
-                        Authorization: "Bearer " + this.connection.accessToken,
-                    },
-                };
-                console.log("Options: ", options);
-                console.log("connection ", this.connection);
-                const url =
-                    process.env.SALESFORCE_INSTANCE_URL +
-                    "/services/apexrest/v1/SAF/";
-                this.connection.requestPost(url, command, options).then(
-                    function (result) {
-                        console.log(result);
-                    },
-                    function (err) {
-                        console.log(err);
-                    }
-                );
-            } else {
-                const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
-                await say(renderAuthorizeButton(salesforce_url));
-            }
-        });
+        //return new Promise((resolve, reject) => {
+        if (this.connection.userInfo) {
+            const options = {
+                headers: {
+                    Authorization: "Bearer " + this.connection.accessToken,
+                },
+            };
+            console.log("Options: ", options);
+            console.log("connection ", this.connection);
+            const url =
+                process.env.SALESFORCE_INSTANCE_URL +
+                "/services/apexrest/v1/SAF/";
+            this.connection.requestPost(url, command, options).then(
+                function (result) {
+                    console.log(result);
+                },
+                function (err) {
+                    console.log(err);
+                }
+            );
+            //resolve();
+        } else {
+            const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
+            await say(renderAuthorizeButton(salesforce_url));
+        }
+        //});
     }
 
     renderAuthorizeButton(salesforce_url) {
@@ -85,7 +86,7 @@ class SalesforceService {
             ],
         };
     }
-    
+
     async postFeedItem(message) {
         return new Promise((resolve, reject) =>
             this.connection.chatter.resource("/feed-elements").create(

@@ -105,7 +105,7 @@ class SalesforceService {
             const salesforceConfig = Configuration.getSalesforceConfig();
             const options = {
                 headers: {
-                    Authorization: "Bearer " + conn.accessToken,
+                    Authorization: "Bearer " + this.connection.accessToken,
                 },
             };
             this.connection

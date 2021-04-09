@@ -85,6 +85,17 @@ receiver.router.use(express.json());
         app.command("/saf", ({ command, ack, say }) => {
             salesforce.executeAction(command, ack, say);
         });
+
+        app.command("/connectsf", async ({ command, ack, say }) => {
+            // Acknowledge command request
+            await ack();
+            const salesforce_url = `https://login.salesforce.com/services/oauth2/authorize?client_id=${process.env.SALESFORCE_CLIENT_ID}&redirect_uri=${process.env.SALESFORCE_REDIRECT_URL}&response_type=code`;
+            await say(renderAuthorizeButton(salesforce_url));
+        });
+
+        app.action("authorize_sf", async ({ command, ack, say }) => {
+            await ack();
+        });
         console.log("try 4");
 
         // Start the app
